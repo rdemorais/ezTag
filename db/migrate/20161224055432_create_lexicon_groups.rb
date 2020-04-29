@@ -1,8 +1,8 @@
 class CreateLexiconGroups < ActiveRecord::Migration[5.0]
   def change
-    remove_reference :lexicons, :collection, index: true, foreign_key: true
+    # remove_reference :lexicons, :collection, index: true, foreign_key: true
     
-    remove_column :collections, :mode_url
+    # remove_column :collections, :mode_url
 
     add_reference :tasks, :lexicon, index: true, foreign_key: true
 

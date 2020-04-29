@@ -11,3 +11,7 @@ In ezTag, users can upload documents in [BioC](http://bioc.sourceforge.net/) for
 - Customized tagging models ([TaggerOne](https://www.ncbi.nlm.nih.gov/bionlp/Tools/taggerone)) trained on a set of annotated documents (i.e. a collection).
 
 NOTE: This repository contains the source code of the ezTag web interface (concept tagging tools excluded).
+
+## Dockerfile
+
+It was added a Dockerfile with mysql cappabilities.
