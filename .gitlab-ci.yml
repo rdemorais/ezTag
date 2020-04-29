@@ -14,15 +14,17 @@ build-eztag:
   stage: build
   only: [master]
   script:
+    - echo $EZTAG_DATABASE | base64 -d > config/database.yml
+    - echo $EZTAG_SECRETS | base64 -d > config/secrets.yml
     - docker build -t $EZTAG_IMAGE:1.0-$CI_PIPELINE_ID .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker push $EZTAG_IMAGE:1.0-$CI_PIPELINE_ID
 
-# k8s-deploy:
-#   image: google/cloud-sdk
-#   stage: deploy
-#   only: [master]
-#   script:
-#     - echo $KUBECONFIG | base64 -d > kubeconfig.yml
-#     - kubectl --kubeconfig=kubeconfig.yml --namespace=default set image deployment.apps/shc-eztag shc-eztag=$EZTAG_IMAGE:1.0-$CI_PIPELINE_ID
+k8s-deploy:
+  image: google/cloud-sdk
+  stage: deploy
+  only: [master]
+  script:
+    - echo $KUBECONFIG | base64 -d > kubeconfig.yml
+    - kubectl --kubeconfig=kubeconfig.yml --namespace=default set image deployment.apps/shc-eztag shc-eztag=$EZTAG_IMAGE:1.0-$CI_PIPELINE_ID
 
