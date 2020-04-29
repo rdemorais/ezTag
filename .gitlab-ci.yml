@@ -1,5 +1,5 @@
 variables:
-  EZTAG_IMAGE: "registry.gitlab.com/ihealth_group/shc/eztag"
+  EZTAG_IMAGE: "registry.gitlab.com/ihealth_group/eztag"
 
 services:
   - docker:dind
