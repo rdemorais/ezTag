@@ -6,16 +6,16 @@ cd /opt
 chown -R 1000:1000 /var/lib/mysql
 
 # Force mariaDb Restart
-# service mysql restart
+service mysql restart
 
 # To confirm mysql socket
-# mysql -e '\s;' | grep 'UNIX socket:'
+mysql -e '\s;' | grep 'UNIX socket:'
 
 # Attempt to create database
-# rake db:create
+rake db:create
 
 # Attempt to run migrations
-# rake db:migrate
+rake db:migrate
 
 # Remove a potentially pre-existing server.pid for Rails.
 rm -f /opt/tmp/pids/server.pid
