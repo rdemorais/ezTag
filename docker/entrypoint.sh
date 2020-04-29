@@ -7,6 +7,7 @@ chown -R mysql:mysql /var/lib/mysql
 chown -R mysql:mysql /var/log/mysql
 
 # Force mariaDb Restart
+mysql_install_db --user=mysql --ldata=/var/lib/mysql
 service mysql restart
 
 # To confirm mysql socket
