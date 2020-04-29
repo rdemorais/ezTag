@@ -2,6 +2,9 @@
 set -e
 cd /opt
 
+# Fix permissions
+chown -R 1000:1000 /var/lib/mysql
+
 # Force mariaDb Restart
 service mysql restart
 
