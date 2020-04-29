@@ -1,0 +1,28 @@
+variables:
+  EZTAG_IMAGE: "registry.gitlab.com/ihealth_group/shc/eztag"
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - deploy
+
+
+build-eztag:
+  image: docker:latest
+  stage: build
+  only: [master]
+  script:
+    - docker build -t $EZTAG_IMAGE:1.0-$CI_PIPELINE_ID .
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push $EZTAG_IMAGE:1.0-$CI_PIPELINE_ID
+
+# k8s-deploy:
+#   image: google/cloud-sdk
+#   stage: deploy
+#   only: [master]
+#   script:
+#     - echo $KUBECONFIG | base64 -d > kubeconfig.yml
+#     - kubectl --kubeconfig=kubeconfig.yml --namespace=default set image deployment.apps/shc-eztag shc-eztag=$EZTAG_IMAGE:1.0-$CI_PIPELINE_ID
+
