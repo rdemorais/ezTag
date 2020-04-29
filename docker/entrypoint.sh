@@ -4,6 +4,7 @@ cd /opt
 
 # Fix permissions
 chown -R mysql:mysql /var/lib/mysql
+chown -R mysql:mysql /var/log/mysql
 
 # Force mariaDb Restart
 service mysql restart
