@@ -18,15 +18,15 @@ RUN gem install bundler && \
 
 COPY docker/entrypoint.sh /usr/bin/
 
-RUN adduser 1000 --force-badname --no-create-home --disabled-login --disabled-password --gecos "" && \
-    chown -R 1000:1000 /var/lib/mysql && \
-    chown -R 1000:1000 /var/log/mysql && \
-    sed -i '16d' /etc/mysql/mariadb.conf.d/50-server.cnf && \
-    echo $'\n\
-    [mysqld] \n\
-    user=1000' >> /etc/mysql/my.cnf && \
-    mkdir /var/run/mysqld/ && \
-    chown -R 1000:1000 /var/run/mysqld
+# RUN adduser 1000 --force-badname --no-create-home --disabled-login --disabled-password --gecos "" && \
+#     chown -R 1000:1000 /var/lib/mysql && \
+#     chown -R 1000:1000 /var/log/mysql && \
+#     sed -i '16d' /etc/mysql/mariadb.conf.d/50-server.cnf && \
+#     echo $'\n\
+#     [mysqld] \n\
+#     user=1000' >> /etc/mysql/my.cnf && \
+#     mkdir /var/run/mysqld/ && \
+#     chown -R 1000:1000 /var/run/mysqld
 
 RUN chmod +x /usr/bin/entrypoint.sh
 
